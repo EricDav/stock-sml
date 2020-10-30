@@ -1,0 +1,107 @@
+.wrap {
+    display: flex;
+}
+
+.wrap-acc {
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+table {
+    width: 100%;
+}
+
+.ca {
+    margin-top: 20px;
+  }
+
+  #name {
+      background-color: #ffff00;
+      width: 20%;
+  }
+
+  .buyer {
+      background-color: #b6d7a8;
+  }
+
+  .seller {
+      background-color: #ead1dc;
+      width: 13.3%;
+  }
+
+  input {
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+  }
+  button {
+      font-size: 1.2em;
+  }
+
+  .lt {
+      margin-top: 12;
+  }
+
+  .search {
+      margin-top: 40px;
+      margin-bottom: -40px;
+      display: flex;
+      flex-direction: column;
+      margin-left: 50px;
+  }
+
+  input {
+      width: 50%;
+  }
+
+  tr {
+      height: 30px;
+  }
+
+  .se {
+      font-size: 20px;
+  }
+
+
+
+  @media (max-width:600px)  {
+    .wrap-acc {
+        font-family: Roboto;
+        padding-left: 0px;
+        padding-right: 0px;
+        margin-top: 100px;
+        margin-bottom: 10px;
+        font-size: 10px;
+    }
+
+    .wrap {
+        font-size: 15px;
+    }
+
+    .font {
+        font-size: 10px;
+    }
+  }
+
+  @media (max-width:400px)  { 
+    .wrap-acc {
+        font-family: Roboto;
+        padding-left: 0px;
+        padding-right: 0px;
+        margin-top: 100px;
+        margin-bottom: 10px;
+        font-size: 8px;
+    }
+
+    .wrap {
+        font-size: 13.5px;
+    }
+
+    .font {
+        font-size: 10px;
+    }
+  }
+
+

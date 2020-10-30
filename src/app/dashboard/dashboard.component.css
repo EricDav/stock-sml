@@ -1,0 +1,40 @@
+.but {
+    margin-top: 100px;
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: flex-end;
+    padding-right: 50px;
+}
+
+.nav-dash {
+    height: 20px;
+    margin-left: 10px;
+    padding-bottom: 10px;
+    align-content: center;
+}
+
+.username {
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.actions {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.wrap {
+    display: flex;
+}
+
+.delete {
+    color: red;
+}
+
+.wrap-acc {
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-bottom: 50px;
+}

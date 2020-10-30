@@ -1,0 +1,160 @@
+<nav class="navbar px-5 navbar-dark bg-primary">
+        <a class="navbar-brand" href="#"><b>Admin Dashboard</b></a>
+        <div class="navbar-right">
+            <a href="#" class="text-white" (click) = "logout()">
+                Logout
+            </a>
+        </div>
+</nav>
+  <!-- delete Modal-->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">{{currentStockToDelete}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Are you sure you want delete this stock
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button (click)="deleteStock()" type="button" class="btn btn-danger">Yes Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- delete Modal End-->
+   
+   <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Stock</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Stock Name:</label>
+                  <input #stock type="text" class="form-control" id="recipient-name">
+                </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button (click)="addStock(stock.value)" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- Modal2 -->
+    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel"> {{action}} Record</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                    <div class="form-group">
+                      <label for="recipient-name" class="col-form-label">Name:</label>
+                      <input [disabled]="disable" [(ngModel)]="subRecord.name" type="text" class="form-control" id="recipient-name">
+
+                      <label for="recipient-name" class="col-form-label">Range B:</label>
+                      <input  [(ngModel)]="subRecord.rangeB" type="number" class="form-control" id="recipient-name">
+
+                      <label for="recipient-name" class="col-form-label">Range S:</label>
+                      <input [(ngModel)]="subRecord.rangeS"  type="number" class="form-control" id="recipient-name">
+
+                      <label  for="recipient-name" class="col-form-label">Price:</label>
+                      <input [disabled]="disable" [(ngModel)]="subRecord.price" type="text" class="form-control" id="recipient-name">
+
+                      <label for="recipient-name" class="col-form-label">Price Diff:</label>
+                      <input [disabled]="disable" [(ngModel)]="subRecord.priceDiff" type="text" class="form-control" id="recipient-name">
+
+                      <label for="recipient-name" class="col-form-label">Quantity:</label>
+                      <input  [disabled] = "disable" [(ngModel)]="subRecord.quantity" type="number" class="form-control" id="recipient-name">
+
+                      <label for="recipient-name" class="col-form-label">Ltr1:</label>
+                      <input [disabled]="disable" [(ngModel)]="subRecord.ltr1" type="number" class="form-control" id="recipient-name">
+
+                      <label for="recipient-name" class="col-form-label">Ltr2:</label>
+                      <input [disabled]="disable" [(ngModel)]="subRecord.ltr2" type="number" class="form-control" id="recipient-name">
+
+                      <label for="recipient-name" class="col-form-label">Update Freq:</label>
+                      <input [disabled]="disable" [(ngModel)]="subRecord.updateFreq" type="number" class="form-control" id="recipient-name">
+                    </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button data-dismiss="modal" (click)="addSubRecord()" type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="but">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add Stock</button>
+      </div>
+
+<div class="wrap-acc" id="accordion">
+  <div *ngFor="let stock of stocks" class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="wrap mb-0">
+        <button class="btn btn-link" data-toggle="collapse" [attr.data-target]="getId(stock.id)" aria-expanded="true" [attr.aria-controls]="stock.id">
+          {{stock.name}}
+        </button>
+        <div class="actions">
+          <button (click) = "setCurrentStockToDelete(stock)" class="btn btn-link delete" data-toggle="modal" data-target="#deleteModal">
+                Delete Stock
+          </button>
+          <button (click)="updateCurrentStockId(stock.id)" class="btn btn-link" data-toggle="modal" data-target="#exampleModal2">
+             Add Sub Records
+          </button>
+        </div>
+      </h5>
+    </div>
+
+    <div [attr.id]="stock.id" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Range (B)</th>
+                <th scope="col">Range (S)</th>
+                <th scope="col">Price</th>
+                <th scope="col">Price Diff</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">LTQ 1</th>
+                <th scope="col">LTQ 2</th>
+                <th scope="col">Update Frequency</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let record of stock.StockRecords">
+                <td>{{static(record, stock.id, 'name')}}</td>
+                <td>{{record.rangeB}}</td>
+                <td>{{record.rangeS}}</td>
+                <td>{{static(record, stock.id, 'price')}}</td>
+                <td>{{static(record, stock.id, 'priceDiff')}}</td>
+                <td>{{static(record, stock.id, 'quantity')}}</td>
+                <td>{{static(record, stock.id, 'ltr1')}}</td>
+                <td>{{static(record, stock.id, 'ltr2')}}</td>
+                <td>{{static(record, stock.id, 'updateFreq')}}</td>
+                <td><button class="btn btn-link" data-toggle="modal" data-target="#exampleModal2" (click)="openUpdateModal(record, stock.id)" href="#">Edit Record</button></td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+  </div>
+</div>
+

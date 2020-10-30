@@ -1,0 +1,53 @@
+<div class="search">
+    <!-- Search form -->
+    <h2>BTLUX ORDER BOOK</h2>
+    <input  (keyup)="modelChanged($event)" class="se form-control" type="text" placeholder="Search" aria-label="Search">
+</div>
+<div class="wrap-acc" id="accordion">
+        <div *ngFor="let stock of resultData" class="card ca">
+          <div class="card-header" id="headingOne">
+            <h5 class="wrap mb-0 fr">
+              <button class="btn btn-link" data-toggle="collapse" [attr.data-target]="getId(stock.id)" aria-expanded="true" [attr.aria-controls]="stock.id">
+                {{stock.stockName}}
+              </button>
+                <div class="lt">
+                    LTP:
+                </div>
+                <button class="btn btn-link" data-toggle="collapse" [attr.data-target]="getId(stock.id)" aria-expanded="true" [attr.aria-controls]="stock.id">
+                        ${{stock.ltp}}
+                </button>
+                <div class="lt">
+                    LTQ:
+                </div>
+                <button class="btn btn-link" data-toggle="collapse" [attr.data-target]="getId(stock.id)" aria-expanded="true" [attr.aria-controls]="stock.id">
+                    {{stock.ltq}}
+                 </button>
+        </h5>
+</div>
+
+<div [attr.id]="stock.id" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+<table class="font">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Bid($)</td>
+            <td>Total Quantity</td>
+            <td>Total Amount($)</td>
+            <td>Ask($)</td>
+            <td>Total Quantity</td>
+            <td>Total Amount($)</td>
+        </tr>
+    </thead>
+    <tbody>
+            <tr *ngFor="let record of stock.subRecords">
+                <td id="name">{{stock.stockName}}/{{record.name}}</td>
+                <td [style.background-color] = "record.color" class="buyer">{{record.bid}}</td>
+                <td [style.background-color] = "record.color" class="buyer">{{record.totalQuantity}}</td>
+                <td [style.background-color] = "record.color" class="buyer">${{record.totalSum}}</td>
+                <td [style.background-color] = "record.color" class="seller">{{record.ask}}</td>
+                <td [style.background-color] = "record.color" class="seller">{{record.totalQuantity2}}</td>
+                <td [style.background-color] = "record.color" class="seller">${{record.totalSum2}}</td>
+            </tr>
+    </tbody>
+</table>
+</div>
